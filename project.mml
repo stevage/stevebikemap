@@ -1,0 +1,513 @@
+{
+  "bounds": [
+    144.6418,
+    -38.1313,
+    145.4768,
+    -37.5783
+  ],
+  "center": [
+    144.9742,
+    -37.8174,
+    9
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 0,
+  "maxzoom": 17,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "scenery.mss",
+    "areas.mss",
+    "style.mss",
+    "roads.mss",
+    "bikepaths.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "polygon",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        85.051
+      ],
+      "id": "waterpoly",
+      "class": "",
+      "Datasource": {
+        "file": "/usr/share/mapbox/wp/water_polygons.shp"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "waterpoly",
+      "status": "off"
+    },
+    {
+      "extent": [
+        141.00003995839717,
+        -38.999739931029296,
+        149.999959944202,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "planet_osm_polygon",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696052.65,-4721634.32,16697919.16,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "areas",
+      "class": "areas",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "areas",
+      "status": "off"
+    },
+    {
+      "extent": [
+        141.00003995839717,
+        -38.999739931029296,
+        149.999959944202,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_polygon where landuse is not null) as landuse",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696052.65,-4721634.32,16697919.16,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "landuse",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "landuse",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where highway is not null and bridge like 'yes') as bridges",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "dbname": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "bridges",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "bridges",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "planet_osm_line",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis",
+        "id": "foo",
+        "project": "testfoo",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "ways",
+      "class": "ways",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "ways",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where waterway is not null) as waterways",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "waterways",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "waterways",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.00028995954074,
+        -38.9998399722225,
+        149.9999299404715,
+        -34.00001998774105
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "planet_osm_roads",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696080.48,-4721648.65,16697915.82,-4028804.71",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "roads",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "roads",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where railway is not null) as rail",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "dbname": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "rail",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "rail",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where highway like 'cycleway' or highway like 'footway' or highway like 'path' or highway like 'bridleway' or highway like 'steps') as paths",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "paths",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "paths",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where highway in ('service','track','residential','unclassified','tertiary')) as minor_roads",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "dbname": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "minor_roads",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "minor_roads",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where highway is null) as non_highways",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "dbname": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "non-highways",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "non-highways",
+      "status": "off"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        141.00039998037278,
+        -38.99861999541159,
+        149.99990997911988,
+        -34.00016999582338
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "planet_osm_point",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696092.727463,-4721473.90069143,16697913.5979125,-4028824.85244296",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "nodes",
+      "class": "nodes",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "nodes",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select *, tags::hstore -> 'state' as state from planet_osm_line where coalesce(lcn,rcn,ncn) is not null) as pathlabels",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "bikeroutes",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "bikeroutes",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where highway in ('trunk','primary','secondary','tertiary','motorway')) as waylabels",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "waylabels",
+      "class": "waylabels",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "waylabels",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where coalesce(lcn,rcn,ncn) is not null) as pathlabels",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis",
+        "id": "pathlabels",
+        "project": "testfoo",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "pathlabels",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "pathlabels",
+      "status": "off"
+    },
+    {
+      "extent": [
+        141.00003995839717,
+        -38.999739931029296,
+        149.999959944202,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_polygon where boundary like 'administrative') as arealabels",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696052.65,-4721634.32,16697919.16,-4028803.36",
+        "host": "localhost",
+        "port": "5432",
+        "user": "ubuntu",
+        "password": "ubuntu",
+        "dbname": "gis"
+      },
+      "id": "arealabels",
+      "class": "arealabels",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "arealabels",
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        141.0000099546667,
+        -38.99997994588071,
+        149.99998994793248,
+        -34.00000993379165
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from planet_osm_line where route like 'mtb') as mtbroutes",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696049.31,-4721668.7,16697922.5,-4028803.36",
+        "dbname": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "mtbroutes",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "mtbroutes",
+      "status": "off"
+    }
+  ],
+  "scale": 1,
+  "metatile": 2,
+  "name": "Bike map",
+  "description": "",
+  "attribution": ""
+}
