@@ -1,26 +1,67 @@
+
 // Mountain bike routes...not really 'cycling'
 #mtbroutes[zoom>=11]::glow {
   line-color:hsla(40, 80%, 60%, 60%);
   line-width:4;
   [zoom=12] { line-width: 3; }
-  [zoom=11] { line-width: 2; }
+  [zoom=11] { line-width: 1.5; line-opacity:40%; }
   line-cap:round;
-//  line-join:round;
+  line-join:round;
 }
+
+#pathlabels[route="mtb"][zoom>=14]{
+
+//  text-name: "[route_name]";
+//  [route_name=""] {
+    text-name: "[route_name]";
+//  }
+  text-size: 12;
+  text-placement: line;
+  text-face-name: "Roboto Condensed Bold";
+  text-fill: yellow;
+  
+  text-halo-fill:fadeout(black,30%);
+  text-halo-radius:1;
+  //text-fill: #0d550d;
+}
+
+
+
+//Useful for highlighting an individual route.
+
+#ways[route="bicycle"][rcn="yes"][zoom>=11][route_name!="Capital City Trail"]::underlay {
+  [route_name="Lilydale-eWarburton Rail Trail"] {
+    o/line-color: hsl(20, 100%, 50%);
+    o/line-width: 14;
+    o/line-cap:round;
+    o/line-join:round;
+    i/line-color: white;
+    i/line-width: 10;
+    i/line-cap:round;
+    i/line-join:round;
+  }
+}
+
+
 
 #paths[highway="cycleway"] {
   [bridge="yes"]::bridge {
     b/line-color: white;
     b/line-width:12;
+    [mtb="yes"] { b/line-width: 6; }
   }
   [zoom > 13] {
     casing/line-color:#0d550d;
     casing/line-width:5;
+    [mtb="yes"] { casing/line-width: 0; }
   }
   line-color:#2a2;
   line-width:4;
+  [mtb="yes"] { line-color: brown;}
   [zoom <= 11] {
     line-width: 1.5;
+    line-color: hsl(110, 70%, 30%);
+    
   }
 }
 #paths[highway="cycleway"]::dashes {
@@ -32,25 +73,13 @@
     line-opacity: 75%;
   }
 }
-/*#pathlabels {
-// never seen this in action
-  [route_name=""] {
-    text-name: "[name]";
-    text-size: 11;
-    text-placement: line;
-    text-face-name: "DejaVu Sans ExtraLight";
-    text-halo-fill:#eee;
-    text-halo-radius:3;
-    text-fill: red; //#0d550d;
-  }
-}
-*/
-#bikeroutes[route="bicycle"][rcn="yes"][zoom>=11]::glow {
+#bikeroutes[route="bicycle"][rcn="yes"][zoom>=11][route_name!="Capital City Trail"]::glow {
   line-color:rgb(30,240,60);
   line-width:10;
-  // these lines are slow?
+  [route_name="Gardiners Creek Trail"] {
+  //  line-color: hsl(20, 100%, 50%);
+  }
   [state="proposed"] { 
-    //line-color: red; 
     line-dasharray: 6,4;
     line-width: 6;
   }
@@ -65,7 +94,7 @@
 
 #bikeroutes[route_name="Capital City Trail"]::cct {
   // yellow markers along the CCT, which overlaps other trails.
-  marker-line-color:hsl(60,100%,60%);
+/*  marker-line-color:hsl(60,100%,60%);
   marker-fill:hsl(60,100%,30%);
   marker-placement: line;
 
@@ -74,7 +103,13 @@
   marker-width:3;
   marker-ignore-placement:true;
   marker-opacity:60%;
-  marker-spacing:50;
+  marker-spacing:50;*/
+  
+  line-color: yellow;
+  line-opacity:80%;
+  line-dasharray: 2,4;
+  line-width:2;
+  [zoom = 12] { line-dasharray: 3,2; }
   
   
 }
@@ -85,6 +120,7 @@
   text-size: 13;
   text-placement: line;
   text-face-name: "Roboto Condensed Bold";
+  [zoom = 11] { text-face-name: "Roboto Condensed Regular"; text-size: 11; }
   text-halo-fill:fadeout(#eee,30%);
   text-halo-radius:3;
   text-fill: #0d550d;
@@ -92,11 +128,12 @@
 
 
 
-#paths[highway="footway"],#paths[highway="path"] {
+#paths[highway="footway"][zoom >= 12],
+#paths[highway="path"][zoom >= 12] {
   line-color:#b74;
   line-width:1;
   line-dasharray:5,2;
-  [bicycle="no"] { line-dasharray:2,5; }
+  [bicycle="no"] { line-dasharray:1,5; }
   }
 
 #paths[highway="steps"] {
@@ -123,3 +160,5 @@
   point-transform:scale(0.02,0.02);
   point-opacity:90%;
 }
+
+#ways[route="ferry"] { line-color: hsl(220,70%,50%); line-width: 0.5; line-dasharray: 8,12;}

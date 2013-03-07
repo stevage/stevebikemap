@@ -1,3 +1,4 @@
+
 #roads[highway="motorway"][zoom > 6] {
   [bridge="yes"] {
     bridge/line-color: white;
@@ -19,12 +20,14 @@
   }
 }
 
-#roads[highway="primary"],
-#roads[highway="secondary"],
-#roads[highway="trunk"] {
-  [bridge="yes"] {
-    bridge/line-color: white;
-    bridge/line-width:6;
+#roads[highway="trunk"],
+#roads[highway="primary"][zoom >= 10],
+#roads[highway="secondary"][zoom >= 10]
+ {
+  [bridge="yes"]::bridge {
+    line-color: white;
+    line-width:6;
+    [zoom <= 12] { line-width:4; }
   }
   [cycleway="lane"]::lane,[cycleway="track"]::lane { 
     line-color: @bikeline; 
@@ -32,9 +35,14 @@
     [zoom >= 13] { line-width:2.5; }
     [zoom >= 15] { line-width: 3;}
   }
-
+  ::notbridge {
   line-color:#aaa;
   line-width:2;
+  [zoom = 10] { line-width: 1; }
+  [zoom = 11] { line-width: 1; }
+  [zoom = 12] { line-width: 1.25; }
+  [zoom = 13] { line-width: 1.5; }
+  }
 }
 
 
@@ -66,7 +74,8 @@
 #minor_roads[zoom >= 12][highway="unclassified"] {
     line-width: 0.5; 
     line-color: #d7d7d7;
-    [zoom >= 13] { line-width: 1; line-color:#ccc; }
+    [zoom = 13] { line-width: 0.5; line-color:#ccc; }
+    [zoom = 14] { line-width: 1; line-color:#ccc; }
     [zoom >= 15] { line-width: 2; line-color: #aaa;}
     [cycleway="lane"],[cycleway="track"] { 
       line-color: @bikeline; 
@@ -111,3 +120,8 @@
   line-dasharray: 6,2;
 }
 
+#rail[railway="tram"][zoom >= 12]::tram {
+  line-color: #333;
+  line-width:1;
+  line-dasharray:1,2;
+}
