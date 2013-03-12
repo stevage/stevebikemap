@@ -35,18 +35,18 @@ Map {
   casing/line-opacity:0.5;
   line-color:@water; line-width: 2; 
   line-cap: round;
-//  line-opacity: 0.5;
+  [zoom = 13] { casing/line-width: 2; line-width: 1.3; }    
   [tunnel="yes"] { line-opacity: 0; casing/line-opacity: 0; }
 }
   }
 
-#natural[natural="water"]{
+#waterbodies[natural="water"]{
   polygon-fill:@water;
   line-color:darken(@water,10%);
   line-width:2;
 }
 
-#natural[waterway="riverbank"]{
+#waterbodies[waterway="riverbank"]{
   polygon-fill:@water;
 }
 

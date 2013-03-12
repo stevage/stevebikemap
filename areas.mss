@@ -1,6 +1,7 @@
 #landuse[zoom > 12] {
   [landuse="industrial"],
-  [landuse="commercial"] {
+  [landuse="commercial"],
+  [aeroway="aerodrome"] {
     polygon-fill: #88b;
     polygon-opacity: 0.2;
   }
@@ -19,7 +20,8 @@
   line-width:1;
   polygon-fill:hsl(100,60%, 80%);
   [zoom <= 12] { polygon-opacity: 0.5; line-opacity: 0.4; }
-  }
+  [zoom >= 15] { polygon-fill: hsl(100, 30%, 90%); }
+}
 
 #leisure[leisure="sports_centre"][zoom>12] {
   line-color:darken(green,10%);
@@ -64,17 +66,18 @@
   //line-width:1.2;
 }
 
-#arealabels[boundary="administrative"][admin_level="10"][zoom > 12]::label {
+#arealabels[boundary="administrative"][admin_level="10"][zoom > 12],//::label {
   //,
 // grr, there are suburbs like Caulfield marked as towns...
-//#nodes[place="town"][zoom >= 9],
-//#nodes[place="city"][zoom >= 8]
-//::label {
+// fixed now but will still show up till next update.
+#nodes[place="town"][zoom >= 9],
+#nodes[place="city"][zoom >= 8]
+::label {
     text-name: "[name]";
     text-placement:interior;
     text-placement-type: simple;
 //    text-allow-overlap: true;
-    text-face-name: "CartoGothic Std Bold";
+    text-face-name: "CartoGothic Std Book";
     text-halo-fill:#fff;
     text-halo-radius:2;
     text-fill: darken(purple, 10%); //#0d550d;

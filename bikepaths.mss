@@ -7,14 +7,57 @@
   [zoom=11] { line-width: 1.5; line-opacity:40%; }
   line-cap:round;
   line-join:round;
+  line-smooth: 1.0;
 }
 
-#pathlabels[route="mtb"][zoom>=14]{
+#mtbroutes[zoom >= 14]::symbols {
+  [mtb_scale="1"],[mtb_scale="2"],[mtb_scale="3"] {
+    marker-ignore-placement: true;
+    marker-type:ellipse;
+    marker-width:7;
+    marker-height:7;
+    [mtb_type="downhill"] { 
+      marker-type:arrow; 
+      marker-width:11;
+      marker-height:11;
+    }
+    marker-placement:line;
+    marker-spacing:70;
+    [mtb_scale="1"] {
+      // green circle
+      marker-fill: hsl(120,90%,40%);
+      marker-line-color:green;
+    }
+    [mtb_scale="2"] {
+      // blue, should be a square
+      marker-fill: hsl(240,80%,60%);
+      marker-line-color:blue;
+    }
+    [mtb_scale="3"] {
+      // black, should be a diamond
+      marker-fill: hsl(0,0%,0%);
+      marker-line-color:black;
+      
+    }
+    [mtb_scale="4"] {
+      // black, should be a double diamond
+      marker-fill: hsl(0,0%,0%);
+      second/marker-fill: black;
+      second/marker-type:ellipse;
+      second/marker-transform:"translate(10)";
+      second/marker-placement:line;
+      second/marker-spacing:70;
+      second/marker-width:7;
+      second/marker-height:7;
+      second/marker-line-color:black;
+    }
+  
+  }
+}
 
-//  text-name: "[route_name]";
-//  [route_name=""] {
-    text-name: "[route_name]";
-//  }
+#pathlabels[route="mtb"][zoom>=14]::labels{
+
+  text-name: "[route_name]";
   text-size: 12;
   text-placement: line;
   text-face-name: "Roboto Condensed Bold";
@@ -22,6 +65,7 @@
   
   text-halo-fill:fadeout(black,30%);
   text-halo-radius:1;
+  text-allow-overlap:true;
   //text-fill: #0d550d;
 }
 
@@ -63,6 +107,12 @@
     line-color: hsl(110, 70%, 30%);
     
   }
+  line-cap:round;
+  line-join:round;
+  line-smooth:1.0;
+  casing/line-cap:round;
+  casing/line-join:round;
+  casing/line-smooth:1.0;
 }
 #paths[highway="cycleway"]::dashes {
   line-color: #5d5;

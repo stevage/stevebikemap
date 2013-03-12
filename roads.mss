@@ -18,9 +18,20 @@
     casing/line-width:3;
     line-width:2;
   }
+  [zoom >= 13] {
+    casing/line-color: lighten(#77a,20%);
+    line-color: lighten(#446, 20%);
+  }
 }
 
+// Hmmm, I kind of prefer not showing the motorway_links, but then some
+// freeways end in the middle of nowhere.
+
+
 #roads[highway="trunk"],
+// foo
+// foo
+#roads[highway="motorway_link"],
 #roads[highway="primary"][zoom >= 10],
 #roads[highway="secondary"][zoom >= 10]
  {
