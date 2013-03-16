@@ -34,11 +34,13 @@
 
 #leisure[zoom>13][leisure="pitch"],
 #leisure[zoom>13][leisure="golf_course"],
+#leisure[zoom>13][leisure="stadium"],
 #landuse[zoom>13][landuse="cemetery"] {
     line-color:darken(green,5%);
     line-width:1;
     line-opacity:0.2;
     polygon-fill:#bdb;
+    [building="yes"] {polygon-opacity:0;}
 }
 
 

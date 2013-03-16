@@ -1,8 +1,7 @@
 
-#rail[railway="rail"],
-#rail[railway="preserved"] {
+#rail[railway="rail"][zoom >= 15][bridge="yes"]::casing,
+#rail[railway="preserved"][zoom >= 15][bridge="yes"]::casing {
   // this is a bit of a mess when two tracks are near each other
-  [zoom >= 15][bridge="yes"]::casing {
     bridge-gap/line-color: white;
     bridge-gap/line-width:6;
     bridge-edge/line-color: lighten(gray,20%);
@@ -14,9 +13,10 @@
     dashes/line-color:#44e;
     dashes/line-width:0.5;
     dashes/line-dasharray:5,5;    
-  }
-  
-  [zoom>=5] {
+}
+
+#rail[railway="rail"][zoom >= 5],
+#rail[railway="preserved"][zoom >= 13]{
      line-color:#89e;
      line-width:2;
      dashes/line-color:#44e;
@@ -28,7 +28,6 @@
       dashes/line-width:0.3;
       dashes/line-dasharray:3,3;
     }
-  }  
 }
   
 #arealabels[railway="station"][zoom >= 12],
@@ -39,6 +38,8 @@
   marker-fill: rgb(40,80,200);
   marker-width: 4;
   marker-opacity:0.6;
+  // station markers aren't important compared to bike path labels...
+  marker-ignore-placement:true;
   [zoom > 13] {
     text-name:  "[name]";
     text-face-name:"DejaVu Sans Condensed";

@@ -2,8 +2,9 @@
 @water:lighten(#a1dcf6,10%);
 
 @seawater: darken(@water, 10%);
+@bg: hsl(30,30%,95%);
 Map {
-  background-color: hsl(30,30%,95%);
+  background-color: @bg;
 }
 
 #waterpoly {
@@ -25,10 +26,9 @@ Map {
   [tunnel="yes"] { line-opacity: 0; casing/line-opacity: 0; }  
 }
 
-[zoom >= 13] {
-#waterways[waterway="stream"],
-#waterways[waterway="drain"],
-#waterways[waterway="canal"]{ 
+#waterways[waterway="stream"][zoom >= 13],
+#waterways[waterway="drain"][zoom >= 13],
+#waterways[waterway="canal"][zoom >= 13]{ 
   casing/line-color: darken(@water,25%);
   casing/line-width:4;
   casing/line-cap:butt;
@@ -37,24 +37,32 @@ Map {
   line-cap: round;
   [zoom = 13] { casing/line-width: 2; line-width: 1.3; }    
   [tunnel="yes"] { line-opacity: 0; casing/line-opacity: 0; }
+  line-smooth: 0.5;
+  casing/line-smooth: 0.5;
 }
-  }
 
-#waterbodies[natural="water"]{
+
+// Two layers needed here to hide the seam between sections of
+// riverbank/lake polygon. Draw the edges first (creating seams)
+// then fill, hiding the seams.
+#waterbodies{
   polygon-fill:@water;
+}
+
+#waterbodies2{
   line-color:darken(@water,10%);
   line-width:2;
 }
 
-#waterbodies[waterway="riverbank"]{
-  polygon-fill:@water;
-}
-
-
+//St Kilda Pier is annoying...
 #non-highways[man_made="pier"][zoom >= 13],
 #constructions[man_made="pier"][zoom >= 13] {
+  c/line-color: darken(@seawater,10%);
+  c/line-width: 2;
+  line-width:1;
   line-color: lighten(gray,20%);
   line-opacity:50%;
+  #non-highways[zoom >= 16] { line-width: 2; c/line-width:4;}
   #constructions[man_made="pier"] {
     polygon-fill:lighten(gray,40%);
     polygon-opacity:50%;
