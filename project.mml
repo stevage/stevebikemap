@@ -11,7 +11,9 @@
     9
   ],
   "format": "png",
-  "interactivity": false,
+  "interactivity": {
+    "fields": []
+  },
   "minzoom": 0,
   "maxzoom": 17,
   "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
@@ -502,8 +504,7 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "waylabels",
-      "status": "off"
+      "name": "waylabels"
     },
     {
       "geometry": "linestring",
@@ -515,7 +516,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select *, tags::hstore->'mtb' as mtb, tags::hstore->'proposed' as proposed  from planet_osm_line where highway like 'cycleway' or highway like 'footway' or highway like 'path' or highway like 'bridleway' or highway like 'steps' or tags::hstore->'proposed' like 'cycleway' or construction like 'cycleway') as paths",
+        "table": "(select way,highway,name,surface,route_name, bridge,bicycle,construction,tags::hstore->'mtb' as mtb, tags::hstore->'proposed' as proposed,ST_Length(way) as len  from planet_osm_line where highway like 'cycleway' or highway like 'footway' or highway like 'path' or highway like 'bridleway' or highway like 'steps' or tags::hstore->'proposed' like 'cycleway' or construction like 'cycleway') as paths",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -563,6 +564,33 @@
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
       "name": "bikeroutes"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        141.00039998037278,
+        -38.99861999541159,
+        149.99990997911988,
+        -34.00016999582338
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, name from planet_osm_point where railway like 'station') as stations",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "15696092.727463,-4721473.90069143,16697913.5979125,-4028824.85244296",
+        "dbname": "gis",
+        "host": "localhost",
+        "user": "ubuntu",
+        "password": "ubuntu"
+      },
+      "id": "nodeshalo",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "nodeshalo"
     },
     {
       "geometry": "point",
@@ -632,7 +660,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from planet_osm_polygon where boundary like 'administrative' or railway like 'station') as arealabels",
+        "table": "(select * from planet_osm_polygon where boundary like 'administrative' or railway like 'station' or aeroway ='aerodrome') as arealabels",
         "key_field": "",
         "geometry_field": "",
         "extent_cache": "auto",
@@ -655,5 +683,6 @@
   "metatile": 2,
   "name": "Steve",
   "description": "",
-  "attribution": ""
+  "attribution": "",
+  "legend": ""
 }

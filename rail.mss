@@ -41,16 +41,29 @@
   // station markers aren't important compared to bike path labels...
   marker-ignore-placement:true;
   [zoom > 13] {
+    h/text-allow-overlap:true;
+    h/text-name:  "[name]";
+    h/text-face-name:"DejaVu Sans Condensed";
+    h/text-fill: hsla(0,0,0,0);//#26c;
+    h/text-size: 10;
+    h/text-halo-fill: #fef;
+    h/text-halo-radius:2;
+    h/text-opacity: 1;//1.0;
+    h/text-placements: "NE,E,N,16,14,12";
+    h/text-placement-type: simple;  
+    h/text-dy:5;
     text-name:  "[name]";
     text-face-name:"DejaVu Sans Condensed";
     text-fill: #26c;
     text-size: 10;
-    text-halo-fill: #fef;
-    text-halo-radius:2;
     text-opacity: 1.0;
     text-placements: "NE,E,N,16,14,12";
     text-placement-type: simple;  
     text-dy:5;
+    text-allow-overlap: true;
+    //text-halo-fill: #fef;
+    //text-halo-radius:2;
+
   }
 [disused="yes"] { 
     marker-opacity: 0;
@@ -58,3 +71,18 @@
     text-face-name:"DejaVu Sans Condensed";
   }  
 }
+/*
+#nodeshalo[zoom>13] {
+    h/text-allow-overlap:true;
+    h/text-name:  "[name]";
+    h/text-face-name:"DejaVu Sans Condensed";
+    h/text-fill: hsla(0,0,0,0);//#26c;
+    h/text-size: 10;
+    h/text-halo-fill: #fef;
+    h/text-halo-radius:2;
+    h/text-opacity: 1;//1.0;
+    h/text-placements: "NE,E,N,16,14,12";
+    h/text-placement-type: simple;  
+    h/text-dy:5;
+}
+*/

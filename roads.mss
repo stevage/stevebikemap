@@ -83,7 +83,9 @@
     line-color: #d7d7d7;
     [zoom = 13] { line-width: 0.5; line-color:#ccc; }
     [zoom = 14] { line-width: 1; line-color:#ccc; }
-    [zoom >= 15] { line-width: 2; line-color: #aaa;}
+    [zoom = 15] { line-width: 1.25; line-color: #aaa;}
+    [zoom = 16] { line-width: 1.5; line-color: #aaa;}
+    [zoom >= 17] { line-width: 2; line-color: #aaa;}
     [cycleway="lane"],[cycleway="track"] { 
       line-color: @bikeline; 
       [cycleway="track"] { line-color: red; }
@@ -108,17 +110,29 @@
 }
   
 #minor_roads[highway="service"][zoom >= 12] {
-    line-width: 0.5; 
-    line-color: #d7d7d7;
+    line-width: 0.5;
+    line-color: hsl(0,0, 85%);
     //[service="parking_aisle"] { opacity: 0.2; }
     [service="alley"][zoom >= 15] { line-dasharray: 6,3; }
-    [zoom >= 14] { line-width: 0.5; line-color:#ccc; }
-    [zoom >= 16] { line-width: 1; line-color: #aaa;}
+    [zoom >= 14] { line-width: 0.5; line-color:hsl(0,0,80%); }
+    [zoom >= 15] { line-width: 1; line-color:hsl(0,0,70%);}
+    [zoom >= 16] { line-width: 1; line-color:hsl(0,0,60%);}
     [cycleway="lane"],[cycleway="track"] { 
       line-color: @bikeline; 
       [zoom >= 14] { line-width:1.5; }
       [zoom >= 16] { line-width: 2;}
     }
+}
+
+#non-highways[aeroway="runway"] {
+  [zoom >= 13] {  
+    line-width: 4;
+    line-color:hsl(330,20%,90%);
+  }
+  [zoom >= 15] {  
+    line-width: 8;
+    line-color:hsl(330,20%,80%);
+  }
 }
 
 #minor_roads [highway="track"][zoom >= 14] {
@@ -127,8 +141,14 @@
   line-dasharray: 6,2;
 }
 
+// trams suck for cyclists
 #rail[railway="tram"][zoom >= 12]::tram {
-  line-color: #333;
   line-width:1;
-  line-dasharray:1,2;
+  line-color: #333;
+  [highway != "nothing"] {
+    // a tram on a road is a hazard - unlike light rails
+    line-width:2;
+    line-color: hsl(20,80%,50%);
+  }
+  line-dasharray:2,4;
 }

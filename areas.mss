@@ -1,4 +1,4 @@
-#landuse[zoom > 12] {
+#landuse[zoom >= 13] {
   [landuse="industrial"],
   [landuse="commercial"],
   [aeroway="aerodrome"] {
@@ -6,6 +6,19 @@
     polygon-opacity: 0.2;
   }
 }
+
+#arealabels[aeroway="aerodrome"][zoom >= 13] {
+    text-name: "[name]";
+    text-placement:interior;
+    text-placement-type: dummy;
+    text-allow-overlap: true;
+    text-face-name: "CartoGothic Std Book";
+    text-halo-fill:#fff;
+    text-halo-radius:0;
+    text-fill: gray;//hsla(0,0,50%,60%);
+    text-size: 11;
+    
+}  
 
 #landuse[landuse="retail"][zoom > 12] {
   polygon-fill: #b88;

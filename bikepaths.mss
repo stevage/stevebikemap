@@ -10,16 +10,17 @@
   line-smooth: 1.0;
 }
 
-/*
+
 #mtbroutes[zoom >= 14]::symbols {
   [mtb_scale="1"],[mtb_scale="2"],[mtb_scale="3"],[mtb_scale="4"] {
-    shield-allow-overlap:true;
-    shield-name:"";
 //    [mtb_type="downhill"] { 
 //      marker-type:arrow; 
 //      marker-width:11;
 //      marker-height:11;
 //    }
+/*    
+    shield-allow-overlap:true;
+    shield-name:"";
     shield-placement:line;
     shield-spacing:70;
     shield-size:0.1;
@@ -40,11 +41,20 @@
     [mtb_scale="4"] {
       shield-file:url('double-black-diamond.svg');
     }
-  
+    */
+    /*
+    marker-file:url('blue-square.svg');
+    marker-width:10;
+    marker-height:10;
+    marker-allow-overlap:true;
+    marker-transform:rotate(0,0,0);
+//    marker-placement:point;
+  */
   }
+    
 }
 
-*/
+
 
 #pathlabels[route="mtb"][zoom>=14]::labels{
 
@@ -173,7 +183,7 @@
   line-color:rgb(30,240,60);
   line-width:10;
   line-opacity:0.4;
-  line-cap:round;
+  line-cap:butt;
   line-join:round;
   [route_name="Gardiners Creek Trail"] {
   //  line-color: hsl(20, 100%, 50%);
